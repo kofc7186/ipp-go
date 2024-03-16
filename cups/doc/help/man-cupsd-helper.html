@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta name="creator" content="mantohtml v2.0.1">
+    <title>cupsd-helper(8)</title>
+  </head>
+  <body>
+    <h1 id="cupsd-helper-8">cupsd-helper(8)</h1>
+    <h2 id="cupsd-helper-8.name">Name</h2>
+<p>cupsd-helper - cupsd helper programs (deprecated)
+</p>
+    <h2 id="cupsd-helper-8.synopsis">Synopsis</h2>
+<p><strong>cups-deviced</strong>
+<em>request-id</em>
+<em>limit</em>
+<em>user-id</em>
+<em>options</em>
+<br>
+<strong>cups-driverd</strong>
+<strong>cat</strong>
+<em>ppd-name</em>
+<br>
+<strong>cups-driverd</strong>
+<strong>list</strong>
+<em>request_id</em>
+<em>limit</em>
+<em>options</em>
+<br>
+<strong>cups-exec</strong>
+<em>sandbox-profile</em>
+[
+<em>-g</em>
+<em>group-id</em>
+] [
+<em>-n</em>
+<em>nice-value</em>
+] [
+<em>-u</em>
+<em>user-id</em>
+]
+<em>/path/to/program</em>
+<em>argv0</em>
+<em>...</em>
+<em>argvN</em>
+</p>
+    <h2 id="cupsd-helper-8.description">Description</h2>
+<p>The <strong>cupsd-helper</strong> programs perform long-running operations on behalf of the scheduler,
+<strong>cupsd</strong>(8).
+
+The <strong>cups-deviced</strong> helper program runs each CUPS
+<strong>backend</strong>(7)
+
+with no arguments in order to discover the available printers.
+</p>
+    <p>The <strong>cups-driverd</strong> helper program lists all available printer drivers, a subset of &quot;matching&quot; printer drivers, or a copy of a specific driver PPD file.
+</p>
+    <p>The <strong>cups-exec</strong> helper program runs backends, filters, and other programs. On macOS these programs are run in a secure sandbox.
+</p>
+    <h2 id="cupsd-helper-8.files">Files</h2>
+<p>The <strong>cups-driverd</strong> program looks for PPD and driver information files in the following directories:
+</p>
+    <pre>
+    <em>/Library/Printers</em>
+    <em>/opt/share/ppd</em>
+    <em>/System/Library/Printers</em>
+    <em>/usr/local/share/ppd</em>
+    <em>/usr/share/cups/drv</em>
+    <em>/usr/share/cups/model</em>
+    <em>/usr/share/ppd</em>
+</pre>
+    <p>PPD files can be compressed using the
+<strong>gzip</strong>(1)
+
+program or placed in compressed
+<strong>tar</strong>(1)
+
+archives to further reduce their size.
+</p>
+    <p>Driver information files must conform to the format defined in
+<strong>ppdcfile</strong>(5).
+
+</p>
+    <h2 id="cupsd-helper-8.notes">Notes</h2>
+<p>CUPS printer drivers, backends, and PPD files are deprecated and will no longer be supported in a future feature release of CUPS.
+Printers that do not support IPP can be supported using applications such as
+<strong>ippeveprinter</strong>(1).
+
+</p>
+    <h2 id="cupsd-helper-8.see-also">See Also</h2>
+<p><strong>backend</strong>(7),
+
+<strong>cups</strong>(1),
+
+<strong>cupsd</strong>(8),
+
+<strong>cupsd.conf</strong>(5),
+
+<strong>filter</strong>(7),
+
+<strong>ppdcfile</strong>(5),
+
+CUPS Online Help (<a href="http://localhost:631/help">http://localhost:631/help</a>)
+</p>
+    <h2 id="cupsd-helper-8.copyright">Copyright</h2>
+<p>Copyright &copy; 2020-2024 by OpenPrinting.
+  </body>
+</html>
