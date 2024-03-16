@@ -1,0 +1,31 @@
+# Print a test page using print-job
+{
+	# The name of the test...
+	NAME "Print file using Print-Job"
+
+	# The operation to use
+	OPERATION Print-Job
+
+	# Attributes, starting in the operation group...
+	GROUP operation-attributes-tag
+	ATTR charset attributes-charset utf-8
+	ATTR language attributes-natural-language en
+	ATTR uri printer-uri $uri
+	ATTR mimeMediaType document-format "application/pdf"
+
+	GROUP job-attributes-tag
+	ATTR integer copies 1
+	ATTR keyword media "na_letter_8.5x11in"
+	ATTR keyword print-scaling "fit"
+	ATTR enum orientation-requested 3
+	ATTR enum print-quality 3
+
+	FILE $filename
+
+	# What statuses are OK?
+	STATUS successful-ok
+	STATUS successful-ok-ignored-or-substituted-attributes
+
+	# What attributes do we expect?
+	DISPLAY job-id
+}
