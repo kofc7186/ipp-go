@@ -42,6 +42,7 @@
 
 	STATUS successful-ok
 	EXPECT job-id
+	# 9 is success but for some reason the example was testing > 5
 	EXPECT job-state WITH-VALUE >5 REPEAT-NO-MATCH
 	DISPLAY job-state
 	DISPLAY job-state-reasons

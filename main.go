@@ -76,8 +76,12 @@ func ReceivePubsubMessage(ctx context.Context, m *pubsub.Message) {
 
 	//cmd := exec.Command("/Users/bcallaway/git/kofc7186/ipp-go/cups/tools/ipptool-static", "-f", tempFile.Name(), "ipp://192.168.2.246", "./print-job-and-wait.test")
 	cmd := exec.Command("./cups/tools/ipptool-static", "-f", tempFile.Name(), printerURL.String(), "./print-job-and-wait.test")
+	stderr := &bytes.Buffer{}
+	stdout := &bytes.Buffer{}
+	cmd.Stderr = stderr
+	cmd.Stdout = stdout
 	if err := cmd.Run(); err != nil {
-		slog.ErrorContext(ctx, "error invoking ipptool", "err", err, "son", m.Attributes["son"])
+		slog.ErrorContext(ctx, "error invoking ipptool", "err", err, "son", m.Attributes["son"], "stdout", stdout.String(), "stderr", stderr.String())
 		m.Nack()
 		return
 	}
