@@ -6,10 +6,10 @@ TOPIC="print_queue"
 function portable_base64_encode() {
   if [[ "$OSTYPE" == "darwin"* ]]; then
     # macOS
-    base64 <<< "$1" | tr -d '\n'
+    cat $1 | base64 | tr -d '\n'
   else
     # Linux (assuming GNU coreutils or compatible)
-    base64 -w 0 <<< "$1"
+    cat $1 | base64 -w0
   fi
 }
 
@@ -19,7 +19,7 @@ fi
 
 for file in `ls $1/`;
 do
-  B64=$(portable_base64_encode $(cat $1/$file))
+  B64=$(portable_base64_encode $1/$file)
   SON=$(echo $1/$file|tr -cd '0-9')
   parity="odd"
   if [ $((SON & 1)) -eq 0 ]; then
